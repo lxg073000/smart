@@ -4,7 +4,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 
 export default function GoalList({ goals }) {
   const handleClick = async (id) => {
-    const ref = doc(db, "users/demo/goals", id);
+    const ref = doc(db, "goals", id);
     await deleteDoc(ref);
     alert(id + " was deleted");
   };

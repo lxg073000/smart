@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { db } from "../firebase";
 
 //firebase imports
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-const useCollection = (_collection) => {
+const useCollection = (_collection, _queryArgs) => {
   const [documents, setDocuments] = useState(null);
+  const queryArgs = useRef(_queryArgs).current;
 
   useEffect(() => {
     let ref = collection(db, _collection);
+    if (queryArgs) {
+      ref = query(ref, where(...queryArgs));
+    }
 
     // Setup realtime listener pointed at Firestore collection reference
     const unsub = onSnapshot(ref, (snapshot) => {
@@ -21,7 +25,7 @@ const useCollection = (_collection) => {
 
     // Returned Cleanup Function
     return () => unsub();
-  }, [_collection]);
+  }, [_collection, queryArgs]);
 
   return { documents };
 };

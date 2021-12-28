@@ -40,6 +40,10 @@ nav a {
   padding: 10px;
   background: #fff;
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.goal-list li > img {
   cursor: pointer;
 }
 label,

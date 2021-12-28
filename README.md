@@ -71,3 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 // Modular Realtime data using custom useCollection hook increases resuability
 // Firebase Auth Email Provider to manage user creation, login, and logout
+// Firebase v9 to allow for treeshaking and reduced filesize

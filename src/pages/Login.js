@@ -1,10 +1,12 @@
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
+import useGoogleLogin from "../hooks/useGoogleLogin";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { error, login } = useLogin();
+  const { googleLogin } = useGoogleLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +38,7 @@ export default function Login() {
         <button>log in</button>
         {error && <p>{error}</p>}
       </form>
+      <button onClick={googleLogin}>Login with Google</button>
     </div>
   );
 }
